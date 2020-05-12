@@ -1,0 +1,49 @@
+<div class="container">
+    <br/>
+    <app-breadcrumb [paths]="breadcrumb"></app-breadcrumb>
+
+    <div class="container">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newPostModal">Nouveau Post</button>
+        <div id="newPostModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Nouveau post</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body" id="modal_body">
+                        <h6>Saisissez un nouveau post :</h6>
+                        <ckeditor [config]="{placeholder: 'Type the content here!'}" [editor]="Editor" [(ngModel)]="new_post"></ckeditor>
+                        <div class="alert alert-danger" role="alert" id="alert_msg" *ngIf="error != ''">{{error}}</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary" (click)="sendNewPost()">Sauvegarder le post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+
+        <table datatable [dtTrigger]="dtTrigger" id="tablePosts" class="tablePosts table table-hover tablePosts">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="tablePosts">Posts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let post of posts" class="tablePosts">
+                    <td class="tablePosts">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-3">{{post.utilisateur}}</h6>
+                            <small>{{post.date}}</small>
+                        </div>
+                        <div class="border-top border-secondary pt-2" [innerHTML]="post.message"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

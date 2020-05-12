@@ -1,0 +1,24 @@
+td.tablePosts {
+    border: 2px solid #585858 !important;
+    border-radius: 5px;
+    background-color: #e6f2ff;
+}
+
+th.tablePosts {
+    background-color: #0062cc !important;
+    color: white !important;
+    border-radius: 5px;
+}
+
+table.tablePosts {
+    border-collapse: separate !important;
+    border-spacing: 5px !important;
+}
+
+body {
+    background-color: #000000;
+}
+
+:host ::ng-deep .ck-editor__editable_inline {
+    min-height: 10em !important;
+}

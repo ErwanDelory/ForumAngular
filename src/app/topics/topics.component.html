@@ -1,0 +1,53 @@
+<div class="container">
+    <br/>
+    <app-breadcrumb [paths]="breadcrumb"></app-breadcrumb>
+
+
+    <div class="container">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newTopic">
+          Nouveau sujet
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="newTopic" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nouveau sujet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
+                    <div class="modal-body" id="modal_body">
+                        <h6>Saisissez un nouveau sujet :</h6>
+                        <input type="text" id="new_subject_name" class="form-control" [(ngModel)]="new_topic" />
+                        <div class="alert alert-danger" role="alert" id="alert_msg" *ngIf="error != ''">{{error}}</div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary" (click)="sendNewTopic()">Créer le sujet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <table datatable [dtTrigger]="dtTrigger" class="table table-hover">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">#Posts</th>
+                <th scope="col">Dernier Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let topic of topics" style="transform: rotate(0);">
+                <td>
+                    <a [routerLink]="['/posts', topic.sujetID]" class="stretched-link"></a>
+                    {{topic.nom}}</td>
+                <td>{{topic.nbPosts}}</td>
+                <td>{{topic.last}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
